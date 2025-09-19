@@ -1,9 +1,6 @@
 @import "tailwindcss";
-
-@theme{
-    --color-primary: blue;
-}
-*{
-    background-size:cover;
+*{  background-size:cover;
     background-position: center;
+    margin: 0;
+    padding: 0;
 }
