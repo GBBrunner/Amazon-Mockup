@@ -1,35 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" class="h-screen">
+<html lang="en">
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="https://cdn.tailwindcss.com" defer></script>
-  <script src="src/scripts/app.js" type="module" defer></script>
-  <link href="/src/style.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Cart Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./src/scripts/app.js" type="module" defer></script>
 </head>
-<body class="h-full">
+<body class="bg-gray-100 min-h-screen">
+  <!-- Header -->
   <header class="bg-indigo-950 h-12 flex items-center px-3">
     <i class="fa fa-amazon text-4xl text-white"></i>
     <h1 class="text-2xl font-bold text-white ml-2">Amazon</h1>
+    <div class="flex-1 flex justify-center">
+      <input type="text" id="search-bar" placeholder="Search products..." class="w-1/4 p-1 rounded" />
+    </div>
     <div class="ml-auto flex items-center">
       <i class="fa fa-shopping-cart text-2xl text-white"></i>
       <span class="ml-2 text-gray-200" id="cart-count">0 items</span>
       <span class="ml-2 text-gray-200" id="cart-total">$0.00</span>
     </div>
   </header>
-  <div id="main" class="h-[calc(100%-3rem)] flex flex-row justify-around">
-    <!-- <div id="app" class="py-3 bg-stone-50 border-gray-300 border-2 w-50 h-100 flex flex-col items-center justify-center">
-      <img src="src/images/headphones.jpg" alt="Product Image" class="w-10/12 h-50 object-center mb-4 overflow-hidden object-cover rounded-xl">
-      <div class="flex-grow pl-3">
-        <p id="product-name" class="mb-4">Sound-proof Bluetooth Headphones</p>
-        <p data-price-value="19.99" class="mb-4 text-lg font-bold" id="product-price">$19.99</p>
-        <select class="quantitySelect mb-4 px-2 py-1 rounded-lg bg-gray-200"></select>
-      </div>
-      <button onclick="add_to_cart()" class="bg-yellow-500 items-center hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full">Add to Cart</button>
-    </div> -->
-  </div>
-  
+
+  <!-- Product Container -->
+<div id="product-container1" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-9 gap-4 p-4"></div>
+<div id="product-container2" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-9 gap-4 p-4"></div>
 </body>
 </html>
