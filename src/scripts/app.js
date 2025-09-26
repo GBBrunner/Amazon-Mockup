@@ -23,7 +23,7 @@ function createProductCard(product) {
   const img = document.createElement('img');
       img.src = product.imageUrl;
       img.alt = product.name;
-      img.className = "w-50 h-50 object-center mb-4 overflow-hidden object-cover rounded-xl";
+      img.className = "w-full h-[15rem] object-center mb-4 overflow-hidden object-cover rounded-xl";
       div.appendChild(img);
   const infoDiv = document.createElement('div');
       infoDiv.className = "flex-grow pl-1 w-full";

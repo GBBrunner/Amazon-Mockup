@@ -63,7 +63,7 @@ async function fetchProducts() {
     const productsArray = apiProducts.map(apiProduct => {
       return new Product(
         apiProduct.name,      // API 'name' -> this.name
-        parseInt(apiProduct.pricecents) / 100, // <--- MODIFIED: Divide by 100 to convert cents to dollars
+        apiProduct.priceCents / 100, // Divide by 100 to convert cents to dollars
         apiProduct.image,     // API 'image' -> this.imageUrl
         apiProduct.id            // API 'id' -> this.identifier
       );
