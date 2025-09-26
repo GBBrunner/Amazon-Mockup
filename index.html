@@ -8,13 +8,16 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="/src/scripts/app.js" type="module" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
 </head>
 <body class="bg-gray-100 min-h-screen">
   <header id="header"></header>
   <div>
-    <p class="text-xl font-bold mb-4">Hard Coded Products using class in products.js</p>
+    <!-- Hard Coded Products Section -->
+    <p class="text-xl font-bold mb-4"><span class="text-gray-500">Hard Coded Products using class in </span><a class="text-blue-500 hover:underline" href="/src/scripts/products.js" target="_blank">products.js</a></p>
     <div id="product-container1" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 p-4 border-b-4 border-gray-400"></div>
     <div id="product-container2" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 p-4 border-b-4 border-gray-400"></div>
+    <!-- Pulls data from totallyrad.dev -->
     <p class="text-xl font-bold mb-4"><span class="text-gray-500">Products fetched from</span> <a class="text-blue-500 hover:underline" href="https://www.totallyrad.dev/api/v1/products" target="_blank">https://www.totallyrad.dev/api/v1/products</a><span class="text-gray-500"> using async/await in fetchProducts.js</span></p>
     <div id="product-container3" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 p-4 border-b-4 border-gray-400"></div>
   </div>

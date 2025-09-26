@@ -1,12 +1,13 @@
 // app.js
-
+import "../styles/style.css"; // Import Tailwind CSS
+// Creates header and product cards
 import { createHeader } from './header.js';
 import { products_row1, products_row2, products_row3 } from './products.js';
-
+// Set up containers for product rows
 const container1 = document.getElementById('product-container1');
 const container2 = document.getElementById('product-container2');
 const container3 = document.getElementById('product-container3');
-
+// It needs to be parsed from JSON string back to array because localStorage only stores strings
 const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 function addToCart(product, quantity) {
