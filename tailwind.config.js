@@ -1,12 +1,11 @@
+const plugin = require('tailwindcss/plugin')
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/html/**/*.{html,js,ts,jsx,tsx}",
-    "./src/**/*.{js,ts,jsx,tsx}"
-  ],
+  content: [],
   theme: {
     extend: {},
   },
-  plugins: [
+    plugins: [
     plugin(function({ addUtilities }) {
       addUtilities({
         // This is your custom utility class
@@ -18,4 +17,4 @@ module.exports = {
       })
     })
   ],
-};
+}

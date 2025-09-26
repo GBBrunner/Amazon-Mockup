@@ -1,8 +1,11 @@
+// app.js
+
 import { createHeader } from './header.js';
-import { products_row1, products_row2 } from './products.js';
+import { products_row1, products_row2, products_row3 } from './products.js';
 
 const container1 = document.getElementById('product-container1');
 const container2 = document.getElementById('product-container2');
+const container3 = document.getElementById('product-container3');
 
 const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -12,16 +15,6 @@ function addToCart(product, quantity) {
     }
     localStorage.setItem('cart', JSON.stringify(cart));
     window.dispatchEvent(new CustomEvent('cartUpdated'));
-}
-
-function removeFromCart(identifier) {
-  const index = cart.findIndex(product => product.identifier === identifier);
-  
-  if (index !== -1) {
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    window.dispatchEvent(new CustomEvent('cartUpdated'));
-  }
 }
 
 function createProductCard(product) {
@@ -39,7 +32,7 @@ function createProductCard(product) {
           name.className = "text-lg mb-2";
           infoDiv.appendChild(name);
       const price = document.createElement('p');
-          price.textContent = `$${product.price.toFixed(2)}`;
+          price.textContent = `$${product.price.toFixed(2)}`
           price.className = "text-gray-600 mb-4";
           infoDiv.appendChild(price);
       const select = document.createElement('select');
@@ -65,5 +58,28 @@ function createProductCard(product) {
 }
 
 createHeader(); 
+
+// Render hardcoded rows synchronously
 products_row1.forEach(product => container1.appendChild(createProductCard(product)));
 products_row2.forEach(product => container2.appendChild(createProductCard(product)));
+
+// --- ASYNCHRONOUS RENDERING FOR FETCHED PRODUCTS (The Fix) ---
+
+async function renderThirdRow() {
+    try {
+        // Await the Promise (products_row3) to get the actual array of products
+        const fetchedProducts = await products_row3;
+        
+        // Ensure we have an array before trying to iterate
+        if (Array.isArray(fetchedProducts)) {
+            fetchedProducts.forEach(product => container3.appendChild(createProductCard(product)));
+        } else {
+            console.error("products_row3 did not resolve to an array.");
+        }
+    } catch (error) {
+        // Handle any errors that occurred during the fetch or rendering
+        console.error("Error rendering third product row:", error);
+    }
+}
+
+renderThirdRow();
