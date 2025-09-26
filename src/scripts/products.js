@@ -1,3 +1,5 @@
+// products.js
+
 // Product class to create product objects
 class Product {
   constructor(name, price, imageUrl, identifier) {
@@ -9,6 +11,9 @@ class Product {
     this.identifier = identifier;
   }
 }
+const API_URL = "https://www.totallyrad.dev/api/v1/products";
+
+
 // Array of products to display for two rows
 const products_row1 = [
   new Product('Sound-proof Bluetooth Headphones', 19.99, '/src/images/headphones.jpg', 'a1b2c3d4'),
@@ -38,5 +43,41 @@ const products_row2 = [
   new Product('Electric Kettle', 24.99, '/src/images/electric_kettle.jpg', 'k9l0m1n2'),
   new Product('Air Fryer', 89.99, '/src/images/air_fryer.jpg', 'o3p4q5r6')
 ];
-// Export the products arrays formed using the class to use in app.js
-export {products_row1, products_row2 };
+
+// Note: In a real application, product data would typically come from an API or database
+// Here is an API example product array structure, fetched from an external source. You typically would not have both hardcoded and API products in the same file.
+
+// Fetch products from API and create Product objects for row 3
+
+async function fetchProducts() {
+  try {
+    const response = await fetch(API_URL);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const apiProducts = await response.json();
+
+    // Map the API data to an array of Product objects
+    const productsArray = apiProducts.map(apiProduct => {
+      return new Product(
+        apiProduct.name,      // API 'name' -> this.name
+        parseInt(apiProduct.pricecents) / 100, // <--- MODIFIED: Divide by 100 to convert cents to dollars
+        apiProduct.image,     // API 'image' -> this.imageUrl
+        apiProduct.id            // API 'id' -> this.identifier
+      );
+    });
+
+    console.log("Array of Product objects successfully created:", productsArray);
+    return productsArray;
+
+  } catch (error) {
+    console.error("Could not fetch products:", error);
+    return [];
+  }
+}
+// Example call to execute the fetch and create the array
+const products_row3 = fetchProducts();
+
+export {products_row1, products_row2, products_row3};
